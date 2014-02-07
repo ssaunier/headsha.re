@@ -1,5 +1,6 @@
 class SharesController < ApplicationController
   before_action :set_share, only: [:public, :show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!
 
   def public
     render :layout => false
@@ -8,7 +9,7 @@ class SharesController < ApplicationController
   # GET /shares
   # GET /shares.json
   def index
-    @shares = Share.all
+    @shares = current_user.shares.all
   end
 
   # GET /shares/1
@@ -18,7 +19,7 @@ class SharesController < ApplicationController
 
   # GET /shares/new
   def new
-    @share = Share.new
+    @share = current_user.shares.new
   end
 
   # GET /shares/1/edit
@@ -28,7 +29,7 @@ class SharesController < ApplicationController
   # POST /shares
   # POST /shares.json
   def create
-    @share = Share.new(share_params)
+    @share = current_user.shares.new(share_params)
 
     respond_to do |format|
       if @share.save
@@ -69,6 +70,7 @@ class SharesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_share
       @share = Share.find(params[:id])
+      authorize @share
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
