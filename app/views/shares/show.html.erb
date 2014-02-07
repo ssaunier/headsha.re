@@ -1,7 +1,5 @@
 <div class="row">
 
-  <p id="notice"><%= notice %></p>
-
   <div class="right">
     <%= pluralize(@share.impressionist_count(:message => "page_view"), "view") %>,
     <%= pluralize(@share.impressionist_count(:message => "header_click"), "header clicks") %>

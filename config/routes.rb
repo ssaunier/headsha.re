@@ -6,5 +6,5 @@ Headshare::Application.routes.draw do
   end
 
   get '/:id', controller: 'shares', action: 'public', constraints: { id: /\d+/ }
-  root "shares#index"
+  root "home#index"
 end
