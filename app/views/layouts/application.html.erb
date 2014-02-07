@@ -25,14 +25,17 @@
         <section class="top-bar-section">
           <!-- Right Nav Section -->
           <ul class="right">
-            <li class="">
+            <li>
               <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
             </li>
           </ul>
           <!-- Left Nav Section -->
           <ul class="left">
-            <li class="active">
+            <li class="<%= active_if :index %>">
               <%= link_to "My links", shares_path %>
+            </li>
+            <li class="<%= active_if :new %>">
+              <%= link_to 'Share something', new_share_path %>
             </li>
           </ul>
         </section>
