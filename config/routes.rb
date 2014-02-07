@@ -1,4 +1,5 @@
 Headshare::Application.routes.draw do
+  devise_for :users
   resources :shares do
     get 'public', on: :collection
   end
