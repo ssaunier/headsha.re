@@ -12,6 +12,8 @@
 
   <br><br>
 
+  <input type="text" value="<%= "#{request.scheme}://#{request.host_with_port}/#{@share.id}" %>">
+
   <iframe src="<%= "/#{@share.id}" %>" width="100%" height="400px" frameborder="3"></iframe>
 
 

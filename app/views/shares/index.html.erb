@@ -27,7 +27,7 @@
       <tbody>
         <% @shares.each do |share| %>
           <tr>
-            <td><%= link_to share.content_url, "/#{share.id}", target: :blank %></td>
+            <td><%= link_to share.content_url, share %></td>
             <td>
               <%= share.header_content %> →
               <%= link_to share.header_url %>
