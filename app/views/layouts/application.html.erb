@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Headsha.re - Share content with your header" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -12,6 +12,32 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">Headsha.re</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon">
+            <a href="#">Menu</a>
+          </li>
+        </ul>
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li class="">
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+            </li>
+          </ul>
+          <!-- Left Nav Section -->
+          <ul class="left">
+            <li class="active">
+              <%= link_to "My links", shares_path %>
+            </li>
+          </ul>
+        </section>
+      </nav>
+    <% end %>
 
     <%= yield %>
     <%= javascript_include_tag "application" %>
