@@ -3,7 +3,8 @@
   <p id="notice"><%= notice %></p>
 
   <div class="right">
-    <%= pluralize(@share.impressionist_count, "view") %>
+    <%= pluralize(@share.impressionist_count(:message => "page_view"), "view") %>,
+    <%= pluralize(@share.impressionist_count(:message => "header_click"), "header clicks") %>
   </div>
 
   <%= link_to 'Edit', edit_share_path(@share) %> |
@@ -15,6 +16,4 @@
   <input type="text" value="<%= "#{request.scheme}://#{request.host_with_port}/#{@share.id}" %>">
 
   <iframe src="<%= "/#{@share.id}" %>" width="100%" height="400px" frameborder="3"></iframe>
-
-
 </div>

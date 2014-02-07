@@ -41,12 +41,12 @@
 </head>
 <body>
   <header id="header">
-    <a href="<%= @share.header_url %>">
+    <a href="<%= header_share_path(@share) %>">
       <%= @share.header_content %>
     </a>
   </header>
   <article class="container">
-    <iframe src="<%= @share.content_url %>" frameborder="0"></iframe>
+    <iframe src="<%= @share.content_url %>?utm_source=headsha.re&amp;utm_campaign=headsha.re&amp;utm_medium=headsha.re" frameborder="0"></iframe>
   </article>
 </body>
 </html>

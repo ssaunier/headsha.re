@@ -2,7 +2,12 @@ class SharePolicy < ApplicationPolicy
   def index?
     true
   end
+
   def public?
+    true
+  end
+
+  def header?
     true
   end
 

@@ -1,12 +1,15 @@
 class SharesController < ApplicationController
-  before_action :set_share, only: [:public, :show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: :public
+  before_action :set_share, only: [:public, :header, :show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:public, :header]
 
   def public
-    unless current_user && @share.user_id == current_user.id
-      impressionist(@share)
-    end
+    impressionist(@share, "page_view") if count_visit?
     render :layout => false
+  end
+
+  def header
+    impressionist(@share, "header_click") if count_visit?
+    redirect_to @share.header_url
   end
 
   # GET /shares
@@ -84,5 +87,9 @@ class SharesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def share_params
       params.require(:share).permit(:content_url, :header_url, :header_content)
+    end
+
+    def count_visit?
+      !(current_user && @share.user_id == current_user.id)
     end
 end
