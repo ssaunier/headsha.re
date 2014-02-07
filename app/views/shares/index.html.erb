@@ -1,7 +1,5 @@
 <div class="row">
 
-  <h1>My links</h1>
-
   <% if @shares.empty? %>
 
     <p>You haven't shared anything yet.</p>
@@ -10,11 +8,18 @@
 
   <% else %>
 
-    <table>
+    <div class="right" style="margin-top: 8px">
+      <%= link_to "Share something!", new_share_path, class: :button %>
+    </div>
+
+    <h1>My links</h1>
+
+    <table width="100%">
       <thead>
         <tr>
           <th>Shared URL</th>
           <th>Message</th>
+          <th>Views</th>
           <th></th>
         </tr>
       </thead>
@@ -27,6 +32,7 @@
               <%= share.header_content %> →
               <%= link_to share.header_url %>
             </td>
+            <td><%= share.impressionist_count %></td>
             <td><%= link_to 'Edit', edit_share_path(share) %></td>
           </tr>
         <% end %>

@@ -12,8 +12,8 @@ gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'foundation_rails_helper'
 
-
 gem 'validates_url_format_of'
+gem 'impressionist'
 
 # Use unicorn as the app server
 # gem 'unicorn'

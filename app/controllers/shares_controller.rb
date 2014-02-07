@@ -3,6 +3,9 @@ class SharesController < ApplicationController
   skip_before_action :authenticate_user!, only: :public
 
   def public
+    unless current_user && @share.user_id == current_user.id
+      impressionist(@share)
+    end
     render :layout => false
   end
 
@@ -19,7 +22,12 @@ class SharesController < ApplicationController
 
   # GET /shares/new
   def new
-    @share = current_user.shares.new
+    last_share = current_user.shares.last
+    if last_share
+      @share = current_user.shares.new header_content: last_share.header_content, header_url: last_share.header_url
+    else
+      @share = current_user.shares.new
+    end
   end
 
   # GET /shares/1/edit

@@ -1,25 +1,18 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
 
-<p>
-  <strong>Content url:</strong>
-  <%= @share.content_url %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Header url:</strong>
-  <%= @share.header_url %>
-</p>
+  <div class="right">
+    <%= pluralize(@share.impressionist_count, "view") %>
+  </div>
 
-<p>
-  <strong>Header content:</strong>
-  <%= @share.header_content %>
-</p>
+  <%= link_to 'Edit', edit_share_path(@share) %> |
+  <%= link_to 'Back to your links', shares_path %>
 
-<%= button_to "View link", "/#{@share.id}", method: :get, class: :button_to %>
 
-<%= link_to 'Edit', edit_share_path(@share) %> |
-<%= link_to 'Back', shares_path %>
+  <br><br>
+
+  <iframe src="<%= "/#{@share.id}" %>" width="100%" height="400px" frameborder="3"></iframe>
+
 
 </div>
