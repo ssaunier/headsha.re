@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content url:</strong>
+  <%= @share.content_url %>
+</p>
+
+<p>
+  <strong>Header url:</strong>
+  <%= @share.header_url %>
+</p>
+
+<p>
+  <strong>Header content:</strong>
+  <%= @share.header_content %>
+</p>
+
+<%= button_to "View link", "/#{@share.id}", method: :get %>
+
+<%= link_to 'Edit', edit_share_path(@share) %> |
+<%= link_to 'Back', shares_path %>
