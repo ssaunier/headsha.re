@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207115458) do
+ActiveRecord::Schema.define(version: 20140208115743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20140207115458) do
     t.datetime "updated_at"
     t.string   "header_content"
     t.integer  "user_id"
+    t.string   "header_background_color"
+    t.string   "header_text_color"
   end
 
   add_index "shares", ["user_id"], name: "index_shares_on_user_id", using: :btree
