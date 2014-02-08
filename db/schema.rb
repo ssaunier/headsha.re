@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20140208115743) do
     t.datetime "updated_at"
     t.string   "header_content"
     t.integer  "user_id"
-    t.string   "header_background_color"
-    t.string   "header_text_color"
+    t.string   "header_background_color", default: "#111111"
+    t.string   "header_text_color",       default: "#eeeeee"
   end
 
   add_index "shares", ["user_id"], name: "index_shares_on_user_id", using: :btree
