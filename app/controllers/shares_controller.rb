@@ -86,7 +86,7 @@ class SharesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def share_params
-      params.require(:share).permit(:content_url, :header_url, :header_content)
+      params.require(:share).permit(:content_url, :header_url, :header_content, :header_background_color, :header_text_color)
     end
 
     def count_visit?

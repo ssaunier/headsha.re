@@ -1,8 +1,13 @@
 <div class="row">
-  <h1>Share your links with a custome Header!</h1>
+  <h1>Share your links with a custom header</h1>
 
   <h2>Engage with your audience, drive traffic to your website</h2>
 
 
-  <%= link_to 'Sign up free!', new_user_registration_path, class: :button %>
+  <div class="center">
+    <a href="/1" target="_blank" class="button">
+    Preview
+    </a>
+    <%= link_to 'Sign up!', new_user_registration_path, class: 'button secondary' %>
+  </div>
 </div>

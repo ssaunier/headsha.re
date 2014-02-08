@@ -3,5 +3,14 @@
   <%= f.text_field :header_content, label: "What message do you want to put in the header?", placeholder: 'Grab a free T-Shirt!' %>
   <%= f.text_field :header_url, label: "Where should the header link go?", placeholder: 'http://my-website-company/' %>
 
+  <div class="row">
+    <div class="small-6 columns">
+      <%= f.text_field :header_background_color %>
+    </div>
+    <div class="small-6 columns">
+      <%= f.text_field :header_text_color %>
+    </div>
+  </div>
+
   <%= f.submit "Share this page", :class => 'button' %>
 <% end %>

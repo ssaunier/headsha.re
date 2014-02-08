@@ -11,7 +11,7 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body <%= raw params[:controller] == "home" ? 'class="home"' : nil %>>
       <nav class="top-bar" data-topbar>
         <ul class="title-area">
           <li class="name">
