@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Headshare::Application.config.secret_key_base = 'e46474690164995570c22873b134a907baf068f4cd7558361a707a3c9a5d029451f725ec396a20a26b026c1c2a1f0202f785615fa7bc27b38ec1ff9a00d3abab'
+Headshare::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
