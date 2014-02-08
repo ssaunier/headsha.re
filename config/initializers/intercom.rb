@@ -13,12 +13,12 @@ IntercomRails.config do |config|
   # This is required for some Intercom rake tasks like importing your users;
   # you can generate one at https://www.intercom.io/apps/api_keys.
   #
-  # config.api_key = "..."
+  config.api_key = ENV["INTERCOM_API_KEY"]
 
   # == Enabled Environments
   # Which environments is auto inclusion of the Javascript enabled for
   #
-  config.enabled_environments = ["development", "production"]
+  config.enabled_environments = ["production"]
 
   # == Current user method/variable
   # The method/variable that contains the logged in user in your controllers.
@@ -36,10 +36,12 @@ IntercomRails.config do |config|
   # You can provide either a method name which will be sent to the current
   # user object, or a Proc which will be passed the current user.
   #
-  # config.user.custom_data = {
-  #   :plan => Proc.new { |current_user| current_user.plan.name },
-  #   :favorite_color => :favorite_color
-  # }
+  config.user.custom_data = {
+    #:plan => Proc.new { |current_user| current_user.plan.name },
+    #:favorite_color => :favorite_color
+    :name => :name,
+    :share_count => :share_count
+  }
 
   # == User -> Company association
   # A Proc that given a user returns an array of companies

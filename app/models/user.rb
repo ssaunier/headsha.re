@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   has_many :shares, dependent: :nullify
 
   validates_presence_of :name
+
+  def share_count
+    shares.size
+  end
 end
