@@ -7,7 +7,7 @@ class SharesController < ApplicationController
 
   def public
     impressionist(@share, "page_view") if count_visit?
-    @content_url = @share.content_url
+    @content_url = @share.content_url + "?utm_source=headsha.re&amp;utm_campaign=headsha.re&amp;utm_medium=headsha.re"
     if proxy_content_response["X-FRAME-OPTIONS"]
       @content_url = proxy_content_share_path
     end
@@ -20,7 +20,13 @@ class SharesController < ApplicationController
   end
 
   def proxy_content
-    render :text => proxy_content_response.body
+    body = proxy_content_response.body
+    ["href", "src"].each do |token|
+      body = body.gsub /#{token}=["']([^"']*)["']/i do
+        "#{token}=\"" + URI::join(@share.content_url, "#{$1}").to_s + '"'
+      end
+    end
+    render :text => body
   end
 
   # GET /shares
