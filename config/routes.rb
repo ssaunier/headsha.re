@@ -3,6 +3,7 @@ Headshare::Application.routes.draw do
   resources :shares do
     get 'public', on: :collection
     get 'header', on: :member
+    get 'proxy_content', on: :member
   end
 
   get '/:id', controller: 'shares', action: 'public', constraints: { id: /\d+/ }

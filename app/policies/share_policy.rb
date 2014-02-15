@@ -11,6 +11,10 @@ class SharePolicy < ApplicationPolicy
     true
   end
 
+  def proxy_content?
+    true
+  end
+
   def show?
     belongs_to_user?
   end

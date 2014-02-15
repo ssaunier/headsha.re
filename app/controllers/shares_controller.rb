@@ -1,15 +1,26 @@
+require "net/http"
+require "uri"
+
 class SharesController < ApplicationController
-  before_action :set_share, only: [:public, :header, :show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:public, :header]
+  before_action :set_share, only: [:public, :header, :proxy_content, :show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:public, :header, :proxy_content]
 
   def public
     impressionist(@share, "page_view") if count_visit?
+    @content_url = @share.content_url
+    if proxy_content_response["X-FRAME-OPTIONS"]
+      @content_url = proxy_content_share_path
+    end
     render :layout => false
   end
 
   def header
     impressionist(@share, "header_click") if count_visit?
     redirect_to @share.header_url
+  end
+
+  def proxy_content
+    render :text => proxy_content_response.body
   end
 
   # GET /shares
@@ -91,5 +102,10 @@ class SharesController < ApplicationController
 
     def count_visit?
       !(current_user && @share.user_id == current_user.id)
+    end
+
+    def proxy_content_response
+      uri = URI.parse @share.content_url
+      Net::HTTP.get_response uri
     end
 end
