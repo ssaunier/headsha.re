@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
   validates_presence_of :name
 
   def share_count
-    shares.size
+    shares.count
   end
 end
