@@ -7,7 +7,7 @@ class Share < ActiveRecord::Base
   validates_url_format_of :content_url, :message => 'is not a valid url'
   validates_url_format_of :header_url, :message => 'is not a valid url'
 
-  COLOR_REGEX = /\A\s*#([0-9a-f]{3}){1,2}\s*\Z/
+  COLOR_REGEX = /\A\s*#([0-9a-fA-F]{3}){1,2}\s*\Z/
   validates_format_of :header_background_color, with: COLOR_REGEX
   validates_format_of :header_text_color, with: COLOR_REGEX
 end
