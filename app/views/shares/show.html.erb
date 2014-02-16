@@ -13,9 +13,5 @@
 
   <input type="text" value="<%= "#{request.scheme}://#{request.host_with_port}/#{@share.id}" %>">
 
-  <div style="text-align: center; font-style: italic">
-  <small>If the page you want to share does not load, it may be because the site prohibit sharing within an iframe (<a target="_blank" href="https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options">X-Frame-Options</a>)</small><br><br>
-  </div>
-
   <iframe src="<%= "/#{@share.id}" %>" width="100%" height="400px" frameborder="3"></iframe>
 </div>

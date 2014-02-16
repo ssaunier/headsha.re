@@ -7,7 +7,7 @@ class SharesController < ApplicationController
 
   def public
     impressionist(@share, "page_view") if count_visit?
-    @content_url = @share.content_url + "?utm_source=headsha.re&amp;utm_campaign=headsha.re&amp;utm_medium=headsha.re"
+    @content_url = @original_content_url = @share.content_url + (@share.content_url.match(/\?/) ? "&" : "?") + "utm_source=headsha.re&utm_campaign=headsha.re#{@share.id}&utm_medium=headsha.re"
     if proxy_content_response["X-FRAME-OPTIONS"]
       @content_url = proxy_content_share_path
     end
