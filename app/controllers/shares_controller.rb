@@ -2,8 +2,8 @@ require "net/http"
 require "uri"
 
 class SharesController < ApplicationController
-  before_action :set_share, only: [:public, :header, :proxy_content, :show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:public, :header, :proxy_content]
+  before_action :set_share, only: [:public, :header, :proxy_content, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:public, :header, :proxy_content, :show]
   skip_after_filter :intercom_rails_auto_include, only: [:public, :header, :proxy_content]
 
   def public
@@ -39,6 +39,8 @@ class SharesController < ApplicationController
   # GET /shares/1
   # GET /shares/1.json
   def show
+    return redirect_to "/#{params[:id]}" unless current_user
+    set_share
   end
 
   # GET /shares/new
