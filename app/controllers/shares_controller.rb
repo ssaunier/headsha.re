@@ -27,6 +27,7 @@ class SharesController < ApplicationController
         "#{token}=\"" + URI::join(@share.content_url, "#{$1}").to_s + '"'
       end
     end
+    response['X-Robots-Tag'] = "noindex, nofollow"
     render :text => body
   end
 
