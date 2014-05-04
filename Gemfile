@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.1.0'
+ruby '2.1.1'
 
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.0'
 gem 'pg'
 gem 'devise'
 gem "pundit"  # Authorization
@@ -19,9 +19,6 @@ gem 'impressionist'
 
 # Use unicorn as the app server
 gem 'unicorn'
-
-# Use debugger
-gem 'debugger', group: [:development, :test]
 
 gem 'rails_12factor'
 
