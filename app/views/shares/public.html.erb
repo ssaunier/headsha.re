@@ -75,20 +75,20 @@
     <meta property="<%= property %>" content="<%= content %>">
   <% end %>
 
-  <% unless @open_graph.metas.include? "og:url" %>
+  <% unless @open_graph.properties.include? "og:url" %>
     <meta property="og:url" content="<%= @share.content_url %>">
   <% end %>
   <link rel="canonical" href="<%= @share.content_url %>">
 
-  <% unless @open_graph.metas.include? "og:title" %>
+  <% unless @open_graph.properties.include? "og:title" %>
     <meta property="og:title" content="<%= @open_graph.title %>">
   <% end %>
 
-  <% unless @open_graph.metas.include? "og:description" %>
+  <% unless @open_graph.properties.include? "og:description" %>
     <meta property="og:description" content="<%= @open_graph.description %>">
   <% end %>
 
-  <% unless @open_graph.metas.include? "og:type" %>
+  <% unless @open_graph.properties.include? "og:type" %>
     <meta property="og:type" content="article">
   <% end %>
 
