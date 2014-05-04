@@ -63,6 +63,9 @@ GEM
       actionpack (>= 3.0)
       railties (>= 3.0)
     hike (1.2.3)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     httpclient (2.3.4.1)
     i18n (0.6.9)
     impressionist (1.5.1)
@@ -83,6 +86,7 @@ GEM
     mini_portile (0.5.2)
     minitest (5.3.3)
     multi_json (1.9.3)
+    multi_xml (0.5.5)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
@@ -169,6 +173,7 @@ DEPENDENCIES
   figaro
   foundation-rails
   foundation_rails_helper
+  httparty
   impressionist
   intercom-rails (~> 0.2.24)
   jquery-rails

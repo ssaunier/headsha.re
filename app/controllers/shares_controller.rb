@@ -1,5 +1,4 @@
-require "net/http"
-require "uri"
+require "httparty"
 
 class SharesController < ApplicationController
   before_action :set_share, only: [:public, :header, :proxy_content, :edit, :update, :destroy]
@@ -9,7 +8,7 @@ class SharesController < ApplicationController
   def public
     impressionist(@share, "page_view") if count_visit?
     @content_url = @original_content_url = @share.content_url + (@share.content_url.match(/\?/) ? "&" : "?") + "utm_source=headsha.re&utm_campaign=headsha.re#{@share.id}&utm_medium=headsha.re"
-    if proxy_content_response["X-FRAME-OPTIONS"]
+    if proxy_content_response.headers["X-FRAME-OPTIONS"]
       @content_url = proxy_content_share_path
     end
     @open_graph = OpenGraph.new(proxy_content_response.body)
@@ -29,7 +28,7 @@ class SharesController < ApplicationController
         "#{token}=\"" + URI::join(@share.content_url, "#{$1}").to_s + '"'
       end
     end
-    response['X-Robots-Tag'] = "noindex, nofollow"
+    response.headers['X-Robots-Tag'] = "noindex, nofollow"
     render :text => body
   end
 
@@ -117,7 +116,6 @@ class SharesController < ApplicationController
     end
 
     def proxy_content_response
-      uri = URI.parse @share.content_url
-      Net::HTTP.get_response uri
+      @proxy_content_response ||= HTTParty.get @share.content_url
     end
 end

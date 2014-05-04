@@ -3,6 +3,8 @@ require 'nokogiri'
 class OpenGraph
   attr_reader :title, :description, :properties, :metas
 
+  PROPERTIES = /^((og:.+)|(twitter:.+))$/i
+
   def initialize(body)
     @body = body
     @properties = Hash.new
@@ -20,16 +22,13 @@ class OpenGraph
 
     def parse_metas!
       @doc.css('meta').each do |m|
+        name = m
         if m.attribute('property')
-          property = m.attribute('property').to_s
-          if property.match(/^(og:.+)$/i)
-            @properties[$1] = m.attribute('content').to_s
-          end
+          result = parse_property(m, 'property')
+          @properties[result.first] = result.last if result
         elsif m.attribute('name')
-          name = m.attribute('name').to_s
-          if name.match(/^(twitter:.+)$/i)
-            @metas[$1] = m.attribute('content').to_s
-          end
+          result = parse_property(m, 'name')
+          @metas[result.first] = result.last if result
         end
       end
     end
@@ -45,6 +44,13 @@ class OpenGraph
       begin
         @description = @doc.xpath("//head/meta[@name='description']/@content").first.value
       rescue
+      end
+    end
+
+    def parse_property(node, name)
+      property = node.attribute(name).to_s
+      if property.match(PROPERTIES)
+        [$1, node.attribute('content').to_s + node.attribute('value').to_s]
       end
     end
 end
