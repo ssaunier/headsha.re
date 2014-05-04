@@ -1,7 +1,7 @@
 require 'nokogiri'
 
 class OpenGraph
-  attr_reader :title, :description, :properties, :metas
+  attr_reader :title, :description, :properties, :metas, :images
 
   PROPERTIES = /^((og:.+)|(twitter:.+))$/i
 
@@ -9,6 +9,7 @@ class OpenGraph
     @body = body
     @properties = Hash.new
     @metas = Hash.new
+    @images = []
   end
 
   def parse!
@@ -16,9 +17,16 @@ class OpenGraph
     parse_title!
     parse_description!
     parse_metas!
+    parse_images!
   end
 
   private
+
+    def parse_images!
+      @doc.css('img').each do |image|
+        @images << image.attribute('src')
+      end
+    end
 
     def parse_metas!
       @doc.css('meta').each do |m|
