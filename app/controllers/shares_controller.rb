@@ -12,6 +12,8 @@ class SharesController < ApplicationController
     if proxy_content_response["X-FRAME-OPTIONS"]
       @content_url = proxy_content_share_path
     end
+    @open_graph = OpenGraph.new(proxy_content_response.body)
+    @open_graph.parse!
     render :layout => false
   end
 

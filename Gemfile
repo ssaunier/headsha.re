@@ -24,3 +24,8 @@ gem 'rails_12factor'
 
 gem 'intercom-rails', '~> 0.2.24'
 gem "figaro"
+
+gem "nokogiri"
+
+gem 'pry-rails', group: [:development, :test]
+gem 'pry-debugger', group: [:development, :test]

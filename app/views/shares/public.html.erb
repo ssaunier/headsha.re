@@ -63,6 +63,17 @@
       text-decoration: none;
     }
   </style>
+
+  <title><%= @open_graph.title %></title>
+  <meta name="description" value="<%= @open_graph.description %>">
+
+  <% @open_graph.metas.each do |name, content| %>
+    <meta name="<%= name %>" value="<%= content %>">
+  <% end %>
+
+  <% @open_graph.properties.each do |property, content| %>
+    <meta property="<%= property %>" value="<%= content %>">
+  <% end %>
 </head>
 <body>
   <header id="header">
