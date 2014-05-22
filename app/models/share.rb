@@ -10,4 +10,12 @@ class Share < ActiveRecord::Base
   COLOR_REGEX = /\A\s*#([0-9a-fA-F]{3}){1,2}\s*\Z/
   validates_format_of :header_background_color, with: COLOR_REGEX
   validates_format_of :header_text_color, with: COLOR_REGEX
+
+  def views
+    impressionist_count(:message => "page_view")
+  end
+
+  def clicks
+    impressionist_count(:message => "header_click")
+  end
 end

@@ -33,8 +33,8 @@
               <%= share.header_content %> →
               <%= link_to share.header_url %>
             </td>
-            <td><%= share.impressionist_count(:message => "page_view") %></td>
-            <td><%= share.impressionist_count(:message => "header_click") %></td>
+            <td><%= share.views %></td>
+            <td><%= share.clicks %></td>
             <td><%= link_to 'Edit', edit_share_path(share) %></td>
           </tr>
         <% end %>
