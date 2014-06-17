@@ -3,42 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body.home {
-  background: image-url('home.jpg') center center;
-  background-size: cover;
-  h1, h2 {
-    color: white;
-    text-align: center;
-  }
-  h1 {
-    margin-top: 1em;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3)
-  }
-  h2 {
-    margin-top: 1em;
-    font-size: 1.2em;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  }
+  color: black;
+
   .center {
     margin-top: 2em;
     text-align: center;
   }
-  .button {
-    border: 3px solid #334352;
-    color: #334352;
-    border-radius: 5px;
-    background-color: transparent;
-    transition: all 0.6s;
-  }
-  .button.sign-up {
-    border-color: #eee;
-    color: #eee;
-    margin-left: 1em;
 
-  }
   .sign-up:hover {
     box-shadow: 1px 1px 4px rgba(255, 255, 255, 0.5);
   }
-  .top-bar, .top-bar ul, .top-bar a {
-    background-color: transparent !important;
+
+  .bio {
+    font-style: italic
   }
 }
